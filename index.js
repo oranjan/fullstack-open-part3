@@ -1,14 +1,10 @@
 const express = require("express")
-const cors = require("cors")
 const morgan = require("morgan")
 
 const app = express()
 app.use(express.json())
-app.use(cors())
-app.use(cors({
-    origin: ['http://localhost:5173'],
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-}))
+app.use(express.static('dist'))
+
 
 morgan.token("body", (req) => {
     return req.method === "POST" ? JSON.stringify(req.body) : ""
